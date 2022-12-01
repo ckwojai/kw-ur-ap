@@ -1,6 +1,7 @@
 package com.kap.restapi.controller
 
 import com.kap.restapi.model.Airport
+import com.kap.restapi.model.CountryCount
 import com.kap.restapi.service.AirportService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -26,18 +27,25 @@ class AirportController(@Autowired
     fun getAllAirport():ResponseEntity<List<Airport>> {
         return ResponseEntity.ok(airportService.getAllAirport())
     }
+    @DeleteMapping("/{id}")
+    fun deleteAirport(@PathVariable id:String):ResponseEntity<String> {
+        airportService.deleteAirport(id)
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+    }
 
     @GetMapping("/{name}")
     fun getAirportByName(@PathVariable name:String) : ResponseEntity<Airport>
             = ResponseEntity.ok(airportService.getAirportByName(name))
 
     @GetMapping("/elevation")
-    fun getAirportByName(@RequestParam min:Double, @RequestParam max:Double) : ResponseEntity<List<Airport>>
+    fun getAirportByElevationRange(@RequestParam min:Double, @RequestParam max:Double) : ResponseEntity<List<Airport>>
             = ResponseEntity.ok(airportService.getAirportByElevationRange(min, max))
 
-    @DeleteMapping("/{id}")
-    fun deleteAirport(@PathVariable id:String):ResponseEntity<String> {
-        airportService.deleteAirport(id)
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
-    }
+    @GetMapping("/country_count")
+    fun getCountryCount(): ResponseEntity<List<CountryCount>>
+            = ResponseEntity.ok(airportService.getAirportCountryCount())
+
+    @GetMapping("/nearest")
+    fun getAirportByElevationRange(@RequestParam lat:Double, @RequestParam log:Double, @RequestParam(defaultValue="10") limit:Int) : ResponseEntity<List<Airport>>
+            = ResponseEntity.ok(airportService.getNearestAirports(lat, log, limit))
 }

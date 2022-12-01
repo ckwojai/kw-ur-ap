@@ -1,6 +1,7 @@
 package com.kap.restapi.service
 
 import com.kap.restapi.model.Airport
+import com.kap.restapi.model.CountryCount
 import com.kap.restapi.repository.AirportRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -29,4 +30,8 @@ class AirportService( @Autowired val airportRepository:AirportRepository) {
     fun getAirportByName(name:String):Airport=airportRepository.findByName(name).
     orElseThrow{ throw RuntimeException("Cannot find Airport by Name") }
 
+    fun getAirportCountryCount():List<CountryCount> = airportRepository.aggregateByCountryCount()
+
+    fun getNearestAirports(lat:Double, log:Double, limit:Int):List<Airport>
+            = airportRepository.findNearestAirports(lat, log, limit)
 }
