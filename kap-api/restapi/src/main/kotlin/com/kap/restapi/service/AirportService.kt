@@ -9,7 +9,15 @@ import java.lang.RuntimeException
 
 @Service
 class AirportService( @Autowired val airportRepository:AirportRepository) {
+    fun getAirportByElevationRange(min:Double, max:Double): List<Airport> = airportRepository.findByElevationRange(min, max)
 
+    fun getAirportByName(name:String):Airport=airportRepository.findByName(name).
+    orElseThrow{ throw RuntimeException("Cannot find Airport by Name") }
+
+    fun getAirportCountryCount():List<CountryCount> = airportRepository.aggregateByCountryCount()
+
+    fun getNearestAirports(lat:Double, log:Double, limit:Int):List<Airport>
+            = airportRepository.findNearestAirports(lat, log, limit)
     fun addAirport(airport:Airport):Airport=airportRepository.insert(airport)
 
     fun updateAirport(airport:Airport){
@@ -24,13 +32,4 @@ class AirportService( @Autowired val airportRepository:AirportRepository) {
 
     fun deleteAirport(id:String)=airportRepository.deleteById(id)
 
-    fun getAirportByElevationRange(min:Double, max:Double): List<Airport> = airportRepository.findByElevationRange(min, max)
-
-    fun getAirportByName(name:String):Airport=airportRepository.findByName(name).
-    orElseThrow{ throw RuntimeException("Cannot find Airport by Name") }
-
-    fun getAirportCountryCount():List<CountryCount> = airportRepository.aggregateByCountryCount()
-
-    fun getNearestAirports(lat:Double, log:Double, limit:Int):List<Airport>
-            = airportRepository.findNearestAirports(lat, log, limit)
 }

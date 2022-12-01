@@ -8,10 +8,8 @@ import java.math.BigInteger
 
 @Document("airports")
 data class Airport(
-    @Id
-    val id:String,
-    @Indexed(unique=true)
-    var name:String,
+    @Id val id:String,
+    @Indexed(unique=true) var name:String,
     var ident:String,
     var type:String,
     var latitude_deg:BigDecimal,
@@ -27,5 +25,6 @@ data class Airport(
     var local_code:String,
     var home_link:String,
     var wikipedia_link:String,
-    var keywords:String
+    var keywords:String,
+    var coord:List<BigDecimal>
 )
