@@ -16,7 +16,7 @@ class AirportService( @Autowired val airportRepository:AirportRepository) {
 
     fun getAirportCountryCount():List<CountryCount> = airportRepository.aggregateByCountryCount()
 
-    fun getNearestAirports(lat:Double, log:Double, limit:Int):List<Airport>
+    fun getNearestAirports(log:Double, lat:Double, limit:Int):List<Airport>
             = airportRepository.findNearestAirports(log, lat, limit)
     fun addAirport(airport:Airport):Airport=airportRepository.insert(airport)
 
