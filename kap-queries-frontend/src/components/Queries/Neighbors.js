@@ -51,9 +51,7 @@ class Neighbors extends Component{
         //set the with credentials to true
         //axios.defaults.withCredentials = true;
 
-        // I prolly told Kin the wrong order of lat and log so now they don't match the URI parameters
-        // I'll take all the blame :)
-        let uri = "https://yelpcamp.kinchang.com/api/airport/nearest?lat="+this.state.log+"&log="+this.state.lat+"&limit=5";
+        let uri = "https://yelpcamp.kinchang.com/api/airport/nearest?lat="+this.state.lat+"&log="+this.state.log+"&limit=5";
         console.log("uri : ",uri);
 
         //make a get request with the user data
