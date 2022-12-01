@@ -23,7 +23,7 @@ class AirportController(@Autowired
 
     @GetMapping("/nearest")
     fun getAirportByElevationRange(@RequestParam lat:Double, @RequestParam log:Double, @RequestParam(defaultValue="10") limit:Int) : ResponseEntity<List<Airport>>
-            = ResponseEntity.ok(airportService.getNearestAirports(lat, log, limit))
+            = ResponseEntity.ok(airportService.getNearestAirports(log, lat, limit))
 
     @GetMapping("/{name}")
     fun getAirportByName(@PathVariable name:String) : ResponseEntity<Airport>
