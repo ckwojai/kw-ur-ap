@@ -25,6 +25,5 @@ data class Airport(
     var local_code:String,
     var home_link:String,
     var wikipedia_link:String,
-    var keywords:String,
-    var coord:List<BigDecimal>
+    var keywords:String
 )
