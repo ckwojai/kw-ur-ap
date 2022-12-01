@@ -20,5 +20,5 @@ interface AirportRepository: MongoRepository<Airport,String> {
         "{ '\$geoNear': { near : { 'type': 'Point', 'coordinates': [?0, ?1] }, distanceField: distance } }",
         "{ '\$limit' : ?2 }"
     ])
-    fun findNearestAirports(lat:Double, log:Double, limit:Int): List<Airport>
+    fun findNearestAirports(log:Double, lat:Double, limit:Int): List<Airport>
 }
