@@ -13,6 +13,22 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/airport")
 class AirportController(@Autowired
                         val airportService: AirportService) {
+    @GetMapping("/elevation")
+    fun getAirportByElevationRange(@RequestParam min:Double, @RequestParam max:Double) : ResponseEntity<List<Airport>>
+            = ResponseEntity.ok(airportService.getAirportByElevationRange(min, max))
+
+    @GetMapping("/country_count")
+    fun getCountryCount(): ResponseEntity<List<CountryCount>>
+            = ResponseEntity.ok(airportService.getAirportCountryCount())
+
+    @GetMapping("/nearest")
+    fun getAirportByElevationRange(@RequestParam lat:Double, @RequestParam log:Double, @RequestParam(defaultValue="10") limit:Int) : ResponseEntity<List<Airport>>
+            = ResponseEntity.ok(airportService.getNearestAirports(lat, log, limit))
+
+    @GetMapping("/{name}")
+    fun getAirportByName(@PathVariable name:String) : ResponseEntity<Airport>
+            = ResponseEntity.ok(airportService.getAirportByName(name))
+
     @PostMapping
     fun addAirport(@RequestBody airport:Airport) : ResponseEntity<String>{
         airportService.addAirport(airport)
@@ -33,19 +49,5 @@ class AirportController(@Autowired
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
     }
 
-    @GetMapping("/{name}")
-    fun getAirportByName(@PathVariable name:String) : ResponseEntity<Airport>
-            = ResponseEntity.ok(airportService.getAirportByName(name))
 
-    @GetMapping("/elevation")
-    fun getAirportByElevationRange(@RequestParam min:Double, @RequestParam max:Double) : ResponseEntity<List<Airport>>
-            = ResponseEntity.ok(airportService.getAirportByElevationRange(min, max))
-
-    @GetMapping("/country_count")
-    fun getCountryCount(): ResponseEntity<List<CountryCount>>
-            = ResponseEntity.ok(airportService.getAirportCountryCount())
-
-    @GetMapping("/nearest")
-    fun getAirportByElevationRange(@RequestParam lat:Double, @RequestParam log:Double, @RequestParam(defaultValue="10") limit:Int) : ResponseEntity<List<Airport>>
-            = ResponseEntity.ok(airportService.getNearestAirports(lat, log, limit))
 }

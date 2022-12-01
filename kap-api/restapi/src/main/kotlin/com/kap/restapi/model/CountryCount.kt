@@ -6,5 +6,5 @@ import org.springframework.data.annotation.Id
 data class CountryCount(
     @Id
     val id:String,
-    var count:Int,
+    var count:Int
 )

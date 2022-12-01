@@ -6,7 +6,6 @@ import com.kap.restapi.repository.AirportRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.RuntimeException
-import java.util.function.Supplier
 
 @Service
 class AirportService( @Autowired val airportRepository:AirportRepository) {
