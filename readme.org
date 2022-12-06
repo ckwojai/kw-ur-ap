@@ -3,8 +3,8 @@
 In this project, we are going to implement a website where users can get information about the worldwide Airports using MongoDB as the database in the backend. There will be a simple web interface built with React for interacting with the database and demonstrating functionalities.
 
 * Team Info
-| Member         | Email                |
-|----------------+----------------------|
-| Kin Wo Chang   | kinwo.chang@sjsu.edu |
-| Xin Yu Li      | xinyu.li@sjsu.edu    |
-| Shailja Kartik |                      |
+| Member         | Email                   |
+|----------------+-------------------------|
+| Kin Wo Chang   | kinwo.chang@sjsu.edu    |
+| Xin Yu Li      | xinyu.li@sjsu.edu       |
+| Shailja Kartik | shailja.kartik@sjsu.edu |
